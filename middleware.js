@@ -42,6 +42,21 @@ let checkToken = ( req, res, next ) => {
 
 };
 
+let validarPermisos =  ( metodo ) => {
+    return ( req, res, next ) => {
+        if ( req.decoded && req.decoded.permisos && req.decoded.permisos[metodo]) {
+            next();
+        } else {
+            res.statusCode = 401;
+            return res.json( {
+                success: false,
+                message: 'Permiso denegado'
+            } );
+        }
+    }
+}
+
 module.exports = {
-  checkToken: checkToken
+  checkToken: checkToken,
+  validarPermisos: validarPermisos
 }

@@ -31,7 +31,7 @@ class HandlerGenerator {
             if( info_usuario.length > 0 && info_usuario[0] != null && info_usuario[0] != undefined ) {
                 
                 // Se genera un nuevo token para el nombre de usuario el cuál expira en 24 horas
-                let token = jwt.sign( { username: username_in },
+                let token = jwt.sign( { username: username_in, permisos: info_usuario[0].permisos },
                 config.secret, { expiresIn: '24h' } );
                 
                 // Retorna el token el cuál debe ser usado durante las siguientes solicitudes
@@ -57,7 +57,8 @@ class HandlerGenerator {
     } else {
 
       // El error 400 corresponde a Bad Request de acuerdo al estándar HTTP
-      res.send( 400 ).json( {
+      res.statusCode = 400;
+      res.json( {
         success: false,
         message: 'Authentication failed! Please check the request'
       } );
