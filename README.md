@@ -11,6 +11,7 @@
 Para el manejo de permisos se almacena desde la base de datos un atributo de tipo objeto que contiene los 4 permisos generales (get, post, update y delete) y un valor lógico asociado a acada permiso que determina si el usuario cunta o no con este.
 
 A continuación se ilustra el jsonSchema que se guarda en la base de datos:
+```
 {
     "$schema": "http://json-schema.org/draft-07/schema",
     "$id": "http://example.com/example.json",
@@ -104,3 +105,4 @@ A continuación se ilustra el jsonSchema que se guarda en la base de datos:
         }
     }
 }
+```
